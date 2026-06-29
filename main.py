@@ -1,22 +1,23 @@
-from algo.dijkstra import dijkstra
+"""
+main.py
+-------
+Entry point of the application. Initializes the Qt event loop, instantiates
+MainWindow, shows it, and exits cleanly.
+"""
+
+import sys
+
+from PySide6.QtWidgets import QApplication
+
+from ui.main_window import MainWindow
 
 
-graph = {
-    "A": {
-        "B": {"distance": 5, "cost": 10},
-        "C": {"distance": 2, "cost": 5}
-    },
-    "B": {
-        "D": {"distance": 4, "cost": 8}
-    },
-    "C": {
-        "B": {"distance": 8, "cost": 12},
-        "D": {"distance": 7, "cost": 15}
-    },
-    "D": {}
-}
+def main() -> int:
+    app = QApplication(sys.argv)
+    window = MainWindow()
+    window.show()
+    return app.exec()
 
-path, cost = dijkstra(graph, "A", "D", weight_type="distance")
 
-print("Shortest Path:", path)
-print("Total Distance:", cost)
+if __name__ == "__main__":
+    sys.exit(main())
